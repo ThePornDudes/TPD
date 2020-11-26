@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="jumbotron" style="background-color: black;">
+        <div class="sh">
+            <a href="{% url 'index' %}">
+                <img src="https://lh3.googleusercontent.com/m9VNzyBooTyqPuHTmLMm9xTsMBkONbFW0ab_5HQ5W9IeDhhs3qhVzpBNhIoqEyG1k29L=s170">
+                </a>
+            <form action="{% url 'search' %}" method="POST">
+                {% csrf_token %}
+                <input class="search" type="text" name="q" placeholder="Search" autocomplete="off">
+                <button class="button button5" type="submit">Search</button>
+            </form>
+        </div>
+            <div>
+                <a href="{% url 'index' %}">Home</a>
+            </div>
+            <div>
+                <a href="{%url 'random_page'%}">
+                    Random Page
+                </a>
+            </div>
+            {% block nav %}
+            {% endblock %}
+        </div>
+        <div class="main col-lg-10 col-md-9">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+
+</body>
+
+</html>
